@@ -13,3 +13,13 @@ follow these steps to setup express after creating folder and going into the fol
 1. npm add mongoose
 2. create db.ts in src and write code for connection
 3. import this in server.js after PORT variable
+
+# handle user Authentaaction on the server side
+1. Make folder user-modal.ts and write schema
+2. install npm add jsonwebtoken bcrypt for password security
+3. Create controller in user.controller.ts means write api which send's data to database
+4. Create route in routes/user.routes.ts file
+5. Go server.ts and register our route above application.port
+6. we can write application.use(express.json()) so that it can pass the body and go to db.ts and add collection name blossom-app after ?
+7. Set user login functionality first we have to send jsonwebtoken to the frontend so that we can validtated before fullfilling the result in user.controller.ts and also create types/index.d.ts to set interface
+8. create route in user.routes.ts
