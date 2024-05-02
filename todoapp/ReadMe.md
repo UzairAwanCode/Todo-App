@@ -23,3 +23,16 @@ follow these steps to setup express after creating folder and going into the fol
 6. we can write application.use(express.json()) so that it can pass the body and go to db.ts and add collection name blossom-app after ?
 7. Set user login functionality first we have to send jsonwebtoken to the frontend so that we can validtated before fullfilling the result in user.controller.ts and also create types/index.d.ts to set interface
 8. create route in user.routes.ts
+
+# Create apis for categories for crud operation
+1. create file in models>category-model.ts and write schema
+2. create file controllers>category-controller.ts for getting all category info from database code. 
+"Schema.Types.ObjectId refers to a specific data type used for defining properties in Mongoose schemas."
+3. create new file routes>category.routes.ts and give path to thatb api we just created in point 2
+4. write code to enter new category in database in category-controller.ts
+5. create middleware>index.ts to write a middleware to get userid which we use to pointout whose category is this
+6. create routes in routes>category.routes.ts for creating category and in server.ts we will register like before
+7.
+8.
+9.
+10.
