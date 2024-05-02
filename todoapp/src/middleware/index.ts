@@ -18,6 +18,7 @@ export const authenticationMiddleware = async(request: AuthRequest, response: Re
         if(existingUser){
             request.user = existingUser.id; //it gives us user id which we access to find and create new categories
         }
+        next()
     } catch (error) {
         console.log("error in authenticationMiddleware", error);
         throw error        

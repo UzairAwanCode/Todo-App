@@ -32,7 +32,7 @@ follow these steps to setup express after creating folder and going into the fol
 4. write code to enter new category in database in category-controller.ts
 5. create middleware>index.ts to write a middleware to get userid which we use to pointout whose category is this
 6. create routes in routes>category.routes.ts for creating category and in server.ts we will register like before
-7.
-8.
+7. write delete code in controllers>category-controller.ts now
+8. write delete code in controllers>category-controller.ts now
 9.
 10.

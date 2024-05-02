@@ -30,7 +30,32 @@ export const createCategory = async (request:AuthRequest, response:Response)=>{
         return response.send(category)
     } catch (error) {
         console.log("Error in createCategory", error);
-        throw error
         response.send({error: "Something went wrong"})
+        throw error
     }
 }
+
+export const deleteCategory = async(request:AuthRequest, response:Response)=>{
+    try {
+        const {id} = request.params
+        await Category.deleteMany({_id: id})
+        response.send({message: "Category Deleted"})
+    } catch (error) {
+        console.log("error in deleteCategory", error);
+        response.send({error: "Something went wrong"})
+        throw error
+    }
+}
+
+export const updateCategory = async(request:AuthRequest, response:Response)=>{
+    try {
+        const {_id, color, icon, isEditable, name}: ICategory = request.body
+        await Category.updateOne({_id},{$set:{name,color,icon,isEditable}})
+        response.send({message: "Category Updated"})
+    } catch (error) {
+        console.log("error in updateCategory", error);
+        response.send({error: "Something went wrong"})
+        throw error
+    }
+}
+
