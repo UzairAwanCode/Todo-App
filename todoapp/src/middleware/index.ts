@@ -5,6 +5,7 @@ import User from "../models/user-model";
 export interface AuthRequest extends Request{
     user: string
 }
+
 export const authenticationMiddleware = async(request: AuthRequest, response: Response, next: NextFunction)=>{
     try {
         const {authorization} = request.headers

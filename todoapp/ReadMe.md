@@ -26,13 +26,20 @@ follow these steps to setup express after creating folder and going into the fol
 
 # Create apis for categories for crud operation
 1. create file in models>category-model.ts and write schema
-2. create file controllers>category-controller.ts for getting all category info from database code. 
-"Schema.Types.ObjectId refers to a specific data type used for defining properties in Mongoose schemas."
-3. create new file routes>category.routes.ts and give path to thatb api we just created in point 2
+2. create file controllers>category-controller.ts for getting all category info from database code. "Schema.Types.ObjectId refers to a specific data type used for defining properties in Mongoose schemas."
+3. create new file routes>category.routes.ts and give path to that api we just created in point 2
 4. write code to enter new category in database in category-controller.ts
 5. create middleware>index.ts to write a middleware to get userid which we use to pointout whose category is this
 6. create routes in routes>category.routes.ts for creating category and in server.ts we will register like before
 7. write delete code in controllers>category-controller.ts now
-8. write delete code in controllers>category-controller.ts now
-9.
-10.
+8. write update code in controllers>category-controller.ts now
+
+# Create api for task crud operation
+1. create models>category-model.ts and schema
+2. create file controllers>task-controller.ts for getting all category info from database code.
+3. create new file routes>task.routes.ts and give path to that api we just created in point 2 and also create route in server.ts too
+4. create add task in task-controller.ts but before that first define type in index.d.ts and then add route like previous steps
+5. write toogle task conversion from true to false and vice versa in task-controller.ts
+6.
+7.
+8.
