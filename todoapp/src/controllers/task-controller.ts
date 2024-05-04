@@ -35,6 +35,45 @@ export const createTask = async(request:AuthRequest, response:Response)=>{
     }
 }
 
+export const getAllTasksByCategory = async(request:AuthRequest, response:Response)=>{
+    try {
+        const userId = request.user
+        const {id} = request.params
+        const tasks = await Task.find({user: userId, categoryId: id})
+        response.send(tasks)
+    } catch (error) {
+        console.log("error in getAllTasksByCategory", error);
+        response.send({error:"Error while fetching all tasks by id"})
+        throw error
+    }
+}
+
+export const getAllCompletedTasks = async(request:AuthRequest, response:Response)=>{
+    try {
+        const userId = request.user
+        const tasks = await Task.find({user: userId, isCompleted: true})
+        response.send(tasks)
+    } catch (error) {
+        console.log("error in getAllCompletedTasks", error);
+        response.send({error:"Error while fetching all completed tasks"})
+        throw error
+    }
+}
+
+export const getTaskForToday = async(request:AuthRequest, response:Response)=>{
+    try {
+        const userId = request.user
+        const todaysISODate = new Date()
+        todaysISODate.setHours(0,0,0,0)
+        const tasks = await Task.find({user: userId, date: todaysISODate.toString()})
+        response.send(tasks)
+    } catch (error) {
+        console.log("error in getAllCompletedTasks", error);
+        response.send({error:"Error while fetching all completed tasks"})
+        throw error
+    }
+}
+
 export const toggleTaskStatus = async (request:AuthRequest, response:Response)=>{
     try {
         const {isCompleted} = request.body
@@ -48,6 +87,20 @@ export const toggleTaskStatus = async (request:AuthRequest, response:Response)=>
     } catch (error) {
         console.log("error in toggleTaskStatus", error);
         response.send({error:"Error while fetching tasks"})
+        throw error
+    }
+}
+
+export const editTask = async(request:AuthRequest, response:Response)=>{
+    try {
+        const {_id, categoryId, date, name}: ITask = request.body
+        await Task.updateOne(
+            {_id}, {$set:{name, categoryId, date}}
+        )
+        response.send({message:"Task Updated Successfully"})
+    } catch (error) {
+        console.log("error in editTask", error);
+        response.send({error:"Error while updating tasks"})
         throw error
     }
 }

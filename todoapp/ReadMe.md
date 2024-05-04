@@ -40,6 +40,7 @@ follow these steps to setup express after creating folder and going into the fol
 3. create new file routes>task.routes.ts and give path to that api we just created in point 2 and also create route in server.ts too
 4. create add task in task-controller.ts but before that first define type in index.d.ts and then add route like previous steps
 5. write toogle task conversion from true to false and vice versa in task-controller.ts
-6.
-7.
-8.
+6. Now write code for getAllTask by category id and create routes same as before
+7. Now write getAllCompletedTask code in same file
+8. Now write getTaskForToday code in same file
+8. Now write editTask code in same file
