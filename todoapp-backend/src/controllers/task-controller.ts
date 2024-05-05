@@ -3,18 +3,6 @@ import { AuthRequest } from "../middleware";
 import Task from "../models/task-model";
 import { ITask } from "../types";
 
-export const getAllTasks = async (request:AuthRequest, response:Response)=>{
-    try {
-        const userId = request.user
-        const tasks = await Task.find({user: userId})
-        response.send(tasks)
-    } catch (error) {
-        console.log("error in getAllTasks", error);
-        response.send({error:"Error while fetching tasks"})
-        throw error
-    }
-}
-
 export const createTask = async(request:AuthRequest, response:Response)=>{
     try {
         const userId = request.user
@@ -30,6 +18,18 @@ export const createTask = async(request:AuthRequest, response:Response)=>{
         response.send(task)
     } catch (error) {
         console.log("error in createTasks", error);
+        response.send({error:"Error while fetching tasks"})
+        throw error
+    }
+}
+
+export const getAllTasks = async (request:AuthRequest, response:Response)=>{
+    try {
+        const userId = request.user
+        const tasks = await Task.find({user: userId})
+        response.send(tasks)
+    } catch (error) {
+        console.log("error in getAllTasks", error);
         response.send({error:"Error while fetching tasks"})
         throw error
     }
