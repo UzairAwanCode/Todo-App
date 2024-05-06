@@ -1,8 +1,10 @@
-import { Text } from "react-native"
+import { Box, Text } from "utils/theme"
 
 const Button = () => {
     return (
-        <Text>Button</Text>
+        <Box bg="primary" p="4" borderRadius="rounded-3xl">
+            <Text color="white">Button Component</Text>
+        </Box>
     )
 }
 
