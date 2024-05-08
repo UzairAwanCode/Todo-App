@@ -1,12 +1,15 @@
+import Button from "@/components/shared/button"
 import SafeAreaWrapper from "@/components/shared/safe-area-wrapper"
 import { AuthScreenNavigationType } from "@/navigation/types"
 import { useNavigation } from "@react-navigation/native"
-import { Button } from "react-native"
+import { LinearGradient } from "expo-linear-gradient"
+import { Image } from "react-native"
 import { Box, Text } from "utils/theme"
 
 const WelcomeScreen = () => {
     const navigation = useNavigation<AuthScreenNavigationType<"Welcome">>()
-
+    const BLOSSOM_IMAGE = "https://res.cloudinary.com/dooxt2sgsdooxt2sgs23233/image/upload/v1676809769/youtube/2023/february/blossom/icon_fb36u3.png"
+    
     const navigateToSignInScreen = () => {
         navigation.navigate("SignIn")
 
@@ -18,11 +21,19 @@ const WelcomeScreen = () => {
 
     return (
         <SafeAreaWrapper>
-            <Box>
-                <Text>Welcome Screen</Text>
-                <Button title="SignIn" onPress={navigateToSignInScreen} />
-                <Button title="SignUp" onPress={navigateToSignUpScreen} />
-            </Box>
+            <LinearGradient colors={["#ffffff", "#fcecff","#f8daff","#fae2ff","#fae2ff","#ffffff"]} style={{ flex: 1 }}>
+                <Box flex={1} justifyContent="center">
+                    <Box alignItems="center" mb="3.5">
+                        <Image source={{uri: BLOSSOM_IMAGE, width:120, height:120}}/>
+                    </Box>
+                    <Text textAlign="center" variant="textXl" fontWeight="700">Do you want to be more productive</Text>
+                    <Box my="3.5" mx="10">
+                        <Button label="Start your journey" onPress={navigateToSignUpScreen}/>
+                    </Box>
+                    <Text textAlign="center" variant="textXs" fontWeight="700" color="gray5">26,698 registered today</Text>
+                </Box>
+            </LinearGradient>
+            
         </SafeAreaWrapper>
     )
 }

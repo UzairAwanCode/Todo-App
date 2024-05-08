@@ -11,7 +11,7 @@ We begin with absolute imports its convention these days:
 1. npm install @react-navigation/native @react-navigation/bottom-tabs @react-navigation/native-stack react-native-screens react-native-safe-area-context
 2. define types in navigation>types.tsx and setup navigation for Home, today, completed, category
 3. we will now setup global store for that we use zustand: npm add zustand @react-native-async-storage/async-storage
-4.
+4. Design Register, Login Screen Ui
 5.
 6.
 7.
