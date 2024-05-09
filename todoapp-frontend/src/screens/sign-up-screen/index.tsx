@@ -5,29 +5,90 @@ import { AuthScreenNavigationType } from "@/navigation/types"
 import { useNavigation } from "@react-navigation/native"
 import { Pressable } from "react-native"
 import { Box, Text } from "utils/theme"
+import { Controller, useForm } from 'react-hook-form'
+import { registerUser } from "@/services/api"
 
 const SignUpScreen = () => {
     const navigation = useNavigation<AuthScreenNavigationType<"SignUp">>()
     const navigateToSignInScreen = () => {
         navigation.navigate("SignIn")
     }
+
+    const { control, handleSubmit, formState: { errors } } = useForm<IUser>({
+        defaultValues: {
+            email: "",
+            password: ""
+        }
+    })
+
+    const onSubmit = async(data: IUser)=>{
+        try {
+            const {name, email, password} = data
+            await registerUser({email, name, password})
+            navigateToSignInScreen()
+        } catch (error) {}
+    }
     return (
         <SafeAreaWrapper>
             <Box flex={1} px="5.5" mt={"13"}>
                 <Text variant="textXl" fontWeight="700">Welcome to Todo App!</Text>
                 <Text variant="textXl" fontWeight="700" mb="6">Your journey starts here</Text>
+                
+                <Controller
+                    control={control}
+                    rules={{ required: true }}
+                    render={({ field: { onChange, onBlur, value } }) => (
+                        <Input
+                            label="Name"
+                            onBlur={onBlur}
+                            onChangeText={onChange}
+                            value={value}
+                            placeholder="Name"
+                            error={errors.name}
+                        />
+                    )}
+                    name="name"
+                />
 
-                <Input label="Name"/>
-                <Box mb="6"/>
-                <Input label="Email"/>
-                <Box mb="6"/>
-                <Input label="Password"/>
-                <Box mt="5.5"/>
+                <Box mb="6" />
+                <Controller
+                    control={control}
+                    rules={{required:true}}
+                    render={({field: {onChange, onBlur, value}})=>(
+                        <Input 
+                            label="Email"
+                            onBlur={onBlur}
+                            onChangeText={onChange}
+                            value={value}
+                            placeholder="Email"
+                            error={errors.email}
+                        />
+                    )}
+                    name="email"
+                />
+                
+                <Box mb="6" />
+                <Controller
+                    control={control}
+                    rules={{required:true}}
+                    render={({field: {onChange, onBlur, value}})=>(
+                        <Input 
+                            label="Password"
+                            onBlur={onBlur}
+                            onChangeText={onChange}
+                            value={value}
+                            placeholder="Password"
+                            error={errors.password}
+                        />
+                    )}
+                    name="password"
+                />
+                <Box mt="5.5" />
                 <Pressable onPress={navigateToSignInScreen}>
                     <Text color="primary" textAlign="right">Log in?</Text>
                 </Pressable>
-                <Box mb="5.5"/>
-                <Button label="Register" onPress={navigateToSignInScreen} uppercase />
+                <Box mb="5.5" />
+                <Button label="Register" onPress={handleSubmit(onSubmit)} uppercase />
             </Box>
         </SafeAreaWrapper>
     )

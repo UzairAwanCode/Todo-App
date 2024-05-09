@@ -3,9 +3,11 @@ import connectToDataBase from "./db";
 import userRoutes from "./routes/user.routes";
 import categoryRoutes from "./routes/category.routes";
 import taskRoutes from "./routes/task.routes";
-
+import cors from 'cors'
 const application = express()
+
 application.use(express.json())
+application.use(cors())
 
 const PORT = 1337
 

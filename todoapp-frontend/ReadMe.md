@@ -12,9 +12,11 @@ We begin with absolute imports its convention these days:
 2. define types in navigation>types.tsx and setup navigation for Home, today, completed, category
 3. we will now setup global store for that we use zustand: npm add zustand @react-native-async-storage/async-storage
 4. Design Register, Login Screen Ui
-5.
-6.
-7.
+5. For setting up user authentaction in frontend we install two packages: 
+npm add axios swr 
+npm install expo-secure-store(to secure token)
+6. In services>config.ts we define global axios instance
+7. Write apis in services> api.ts
 8.
 9.
 10.

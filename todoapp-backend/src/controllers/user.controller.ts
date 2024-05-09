@@ -15,6 +15,8 @@ const getUserToken = (_id:string|Types.ObjectId)=>{
 
 export const createUser = async(request: Request, response:Response)=>{
     try{
+        console.log(request.body);
+        
         const {name, email, password} = request.body
         const existingUser = await User.findOne({email})
         
