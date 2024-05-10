@@ -4,8 +4,8 @@ import useSWR from "swr"
 import { Box, Text } from "utils/theme"
 
 const HomeScreen = () => {
-    const {data, isLoading} = useSWR("categories", fetcher) 
-    console.log(`data`, JSON.stringify(data, null, 2));
+    // const {data, isLoading} = useSWR("categories", fetcher) 
+    // console.log(`data`, JSON.stringify(data, null, 2));
     
     return (
         <SafeAreaWrapper>

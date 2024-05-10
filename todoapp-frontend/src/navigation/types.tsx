@@ -25,7 +25,7 @@ export type CategoriesStackParamList = {
         id: string
     }
     CreateCategory: {
-        id?: string
+        id?: ICategory
     }
 }
 
@@ -50,3 +50,6 @@ export type AuthScreenNavigationType<RouteName extends keyof AuthStackParamList>
         NativeStackNavigationProp<AuthStackParamList, RouteName>,
         NativeStackNavigationProp<AppStackParamList, "Root">
     >;
+
+export type CategoriesNavigationType =
+    NativeStackNavigationProp<CategoriesStackParamList>

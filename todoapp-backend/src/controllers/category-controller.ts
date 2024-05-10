@@ -7,6 +7,7 @@ export const getAllCategories = async(request:AuthRequest, response:Response)=>{
     try{
         const {user} = request
         const categories = await Category.find({user: user})
+        
         return response.send(categories)
     }
     catch(error){

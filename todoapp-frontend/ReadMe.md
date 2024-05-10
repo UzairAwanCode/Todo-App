@@ -17,7 +17,7 @@ npm add axios swr
 npm install expo-secure-store(to secure token)
 6. In services>config.ts we define global axios instance
 7. Write apis in services> api.ts
-8.
+8. Perform crud operation in frontend
 9.
 10.
 11.
