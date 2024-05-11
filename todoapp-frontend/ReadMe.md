@@ -18,8 +18,8 @@ npm install expo-secure-store(to secure token)
 6. In services>config.ts we define global axios instance
 7. Write apis in services> api.ts
 8. Perform crud operation in frontend
-9.
-10.
+9. npm install nanoid to generate unique ids so that every color has its on id
+10. 
 11.
 12.
 13.

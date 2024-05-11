@@ -8,8 +8,11 @@ import useSWR from "swr"
 import { Box, Text } from "utils/theme"
 
 const CategoriesScreen = () => {
-    const { data, isLoading, error } = useSWR("categories", fetcher)
-    console.log(`data`, JSON.stringify(data, null, 2));
+    const { data, isLoading, error } = useSWR<ICategory[]>(
+        "categories/",
+        fetcher,
+        {refreshInterval: 2000}
+    )
     
 
     if (isLoading) {

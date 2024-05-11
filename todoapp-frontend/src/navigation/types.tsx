@@ -25,7 +25,7 @@ export type CategoriesStackParamList = {
         id: string
     }
     CreateCategory: {
-        id?: ICategory
+        category?: ICategory
     }
 }
 
