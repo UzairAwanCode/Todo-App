@@ -1,7 +1,7 @@
 import axios from "axios"
 import * as SecureStore from 'expo-secure-store'
 
-export const BASE_URL = "http://192.168.1.12:1337/"
+export const BASE_URL = "http://192.168.1.8:1337/"
 const TIME_OUT = 30000
 export const TODO_APP = "todo_user_token"
 
