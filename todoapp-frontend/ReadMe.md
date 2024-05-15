@@ -19,8 +19,8 @@ npm install expo-secure-store(to secure token)
 7. Write apis in services> api.ts
 8. Perform crud operation in frontend
 9. npm install nanoid to generate unique ids so that every color has its on id
-10. 
-11.
+10. npm add date-fns(perform various operations on dates like parsing, formatting, adding or subtracting time, comparing dates, etc. It provides a comprehensive set of functions to work with dates in a convenient and efficient manner.)
+11. npm add react-native-calendars
 12.
 13.
 14.
