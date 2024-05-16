@@ -1,7 +1,7 @@
 import { format, isToday } from "date-fns"
 import { useState } from "react"
 import { FlatList, Pressable, TextInput } from "react-native"
-import useSWR from "swr"
+import useSWR, { useSWRConfig } from "swr"
 import { Box, Text } from "utils/theme"
 import Loader from "../shared/Loader"
 import axiosInstance, { fetcher } from "@/services/config"
@@ -12,7 +12,8 @@ type TaskActionsProps = {
     categoryId: string
 }
 
-const todayISODate = new Date("2024-05-15").toISOString()
+export const todayISODate = new Date("2024-05-15").toISOString()
+export const today = new Date()
 const createTaskRequest = async (url: string, { arg }: { arg: ITaskRequest }) => {
     try {
         await axiosInstance.post(url, { ...arg })
@@ -34,14 +35,13 @@ const TaskActions = ({ categoryId }: TaskActionsProps) => {
     const [isSelectingCategory, setIsSelectingCategory] = useState<boolean>(false)
     const [isSelectingDate, setIsSelectingDate] = useState<boolean>(false)
     const { data: categories, isLoading } = useSWR<ICategory[]>("categories", fetcher)
-    const today = new Date()
     const { data, trigger } = useSWRMutation("tasks/create", createTaskRequest)
-
+    const { mutate } = useSWRConfig()
     if (isLoading || !categories) {
         return <Loader />
     }
     const selectedCategory = categories?.find((_category) => _category._id === newTask.categoryId)
-    const onCreateTask = async() => {
+    const onCreateTask = async () => {
         try {
             if (newTask.name.length.toString().trim().length > 0) {
                 await trigger({ ...newTask })
@@ -51,6 +51,7 @@ const TaskActions = ({ categoryId }: TaskActionsProps) => {
                     date: todayISODate,
                     name: ""
                 })
+                await mutate({ ...newTask })
             }
         } catch (error) {
             console.log("Error in onCreateTask");
@@ -137,19 +138,21 @@ const TaskActions = ({ categoryId }: TaskActionsProps) => {
                 }
 
             </Box>
-            {isSelectingDate && <Calendar
-                minDate={format(today, "y-MM-dd")}
-                onDayPress={(day) => {
-                    setIsSelectingDate(false)
-                    const selectedDate = new Date(day.dateString).toISOString()
-                    setNewTask((prev) => {
-                        return {
-                            ...prev,
-                            date: selectedDate
-                        }
-                    })
-                }}
-            />}
+            {
+                isSelectingDate && <Calendar
+                    minDate={format(today, "y-MM-dd")}
+                    onDayPress={(day) => {
+                        setIsSelectingDate(false)
+                        const selectedDate = new Date(day.dateString).toISOString()
+                        setNewTask((prev) => {
+                            return {
+                                ...prev,
+                                date: selectedDate
+                            }
+                        })
+                    }}
+                />
+            }
         </Box>
     )
 }

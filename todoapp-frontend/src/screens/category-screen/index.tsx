@@ -20,7 +20,7 @@ const CategoryScreen = () => {
         fetcher
     )
 
-    const { data: tasks, isLoading: isLoadingTasks } = useSWR<ITask[]>(`tasks/tasks-by-categories/${id}`, fetcher, { refreshInterval: 1000 })
+    const { data: tasks, isLoading: isLoadingTasks, mutate: mutateTasks, } = useSWR<ITask[]>(`tasks/tasks-by-categories/${id}`, fetcher, { refreshInterval: 1000 })
 
     if (isLoadingTasks || isLoadingCategory || !category || !tasks) {
         return <Loader />
@@ -49,7 +49,7 @@ const CategoryScreen = () => {
                 <FlatList
                     data={tasks}
                     renderItem={({ item, index }) => {
-                        return <Task task={item} />
+                        return <Task task={item} mutateTasks={mutateTasks}/>
                     }}
                     ItemSeparatorComponent={() => <Box height={14} />}
                 />

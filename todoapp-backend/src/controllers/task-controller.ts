@@ -66,6 +66,11 @@ export const getTaskForToday = async(request:AuthRequest, response:Response)=>{
         const todaysISODate = new Date()
         todaysISODate.setHours(0,0,0,0)
         const tasks = await Task.find({user: userId, date: todaysISODate.toString()})
+        console.log(userId);
+        console.log(tasks);
+        console.log(todaysISODate);
+        
+        
         response.send(tasks)
     } catch (error) {
         console.log("error in getAllCompletedTasks", error);
@@ -86,6 +91,18 @@ export const toggleTaskStatus = async (request:AuthRequest, response:Response)=>
         response.send({message: "Task status update"})
     } catch (error) {
         console.log("error in toggleTaskStatus", error);
+        response.send({error:"Error while fetching tasks"})
+        throw error
+    }
+}
+
+export const deleteTask = async(request: AuthRequest, response:Response)=>{
+    try {
+        const {id} = request.params
+        await Task.deleteOne({_id:id})
+        response.send({message: "Task Deleted"})
+    } catch (error) {
+        console.log("error in deleteTask", error);
         response.send({error:"Error while fetching tasks"})
         throw error
     }
